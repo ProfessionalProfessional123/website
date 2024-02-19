@@ -1,0 +1,23 @@
+
+  body {
+    background-color: #d31f9a; /* Light gray background */
+    font-family: 'Arial', sans-serif; /* Text in Arial font */
+
+}
+
+h1 {
+    color: rgb(95, 110, 247); /* Main heading text color is blue */
+    border-style: solid;
+    border-color: green;
+    width:15%;
+    display: flex;
+    justify-content: center;
+  }
+
+p {
+    color: rgb(4, 240, 107); /* Paragraph text color is green */
+
+}
+
+div{
+}
