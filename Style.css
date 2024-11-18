@@ -19,5 +19,12 @@ p {
 
 }
 
-div{
+h2 {
+  color: rgb(247, 245, 95); /* Main heading text color is blue */
+
 }
+
+#navbar{
+  display: flex;
+  justify-content:space-between ;
+  }
