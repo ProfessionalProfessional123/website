@@ -6,9 +6,9 @@
 }
 
 h1 {
-    color: rgb(95, 110, 247); /* Main heading text color is blue */
+    color: rgb(76, 255, 103); /* Main heading text color is Green */
     border-style: solid;
-    border-color: green;
+    border-color: rgb(220, 13, 13);
     width:15%;
     display: flex;
     justify-content: center;
