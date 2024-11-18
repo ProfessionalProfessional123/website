@@ -1,6 +1,6 @@
 
   body {
-    background-color: #d31f9a; /* Light gray background */
+    background-color: #b222db; /* Light gray background */
     font-family: 'Arial', sans-serif; /* Text in Arial font */
 
 }
@@ -14,8 +14,12 @@ h1 {
     justify-content: center;
   }
 
+h3 {
+    color:rgb(23, 206, 106)
+}
+
 p {
-    color: rgb(4, 240, 107); /* Paragraph text color is green */
+    color: rgb(4, 224, 240); /* Paragraph text color is blue */
 
 }
 
