@@ -1,11 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dadjokes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad Joke Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .joke {
+            font-size: 24px;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<div id="dad-joke">
-<p></p>
-</div>
+    <div class="container">
+        <h1>Dad Joke Generator</h1>
+        <div class="joke" id="dadJoke">Loading a joke...</div>
+        <button onclick="fetchDadJoke()">Get New Joke</button>
+    </div>
+
+    <script>
+        // Function to fetch a dad joke from an API 
+        async function fetchDadJoke() {
+            try {
+                const response = await fetch('https://icanhazdadjoke.com/', {
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                const data = await response.json();
+                document.getElementById('dadJoke').textContent = data.joke;
+            } catch (error) {
+                console.error('Error fetching joke:', error);
+                document.getElementById('dadJoke').textContent = 'Oops! Something went wrong.';
+            }
+        }
+
+        // Load a joke when the page first loads
+        window.onload = fetchDadJoke;
+    </script>
 </body>
 </html>
