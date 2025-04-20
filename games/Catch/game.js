@@ -2,6 +2,7 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const catchSound = document.getElementById("catch-sound");
 const loseSound = document.getElementById("lose-sound");
+const oofSound = document.getElementById("damaged-sound");
 
 let basket = {
     x: 175,
@@ -89,6 +90,7 @@ function update(){
         if(obj.y > canvas.height){
             objects.splice(index,1); 
             lives -= 1;
+            oofSound.play();
         }
 
         ctx.fillStyle = "red";
