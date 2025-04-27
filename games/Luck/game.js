@@ -19,24 +19,37 @@ const body = document.getElementById("game");
 const restartBtn = document.getElementById("restart-btn");
 const wins = document.getElementById("wins");
 const losts = document.getElementById("losts");
+const punchSound = document.getElementById("punch-sound");
+const spunchSound = document.getElementById("spunch-sound");
+const missSound = document.getElementById("miss-sound");
+const winSound = document.getElementById("win-sound");
+const loseSound = document.getElementById("lose-sound");
+const blockSound = document.getElementById("block-sound");
 
 attackBtn.addEventListener("click", () => {
     let playerDamage = Math.floor(Math.random()*player.attack);
-    const enemyAction = Math.random() < 1.2 ? "attack" : "defend";
+    const enemyAction = Math.random() < 0.85 ? "attack" : "defend";
     let enemyDamage = Math.floor(Math.random()*enemy.attack);
-
+    
+ 
     message.innerHTML = "";
     if(enemyAction === "defend"){
         playerDamage = 0
         message.innerHTML += "Enemy blocked your attack! <br>";
+        blockSound.play();
     }
-    else if (Math.random() < 0.3){
+    else if (Math.random() < 0.25){
         playerDamage *=2;
         message.innerHTML = "CRITICAL HIT! You dealt double damage! <br>";
+        spunchSound.play();
     }
     else if (Math.random() < 0.2){
         playerDamage = 0;
         message.innerHTML = "You missed your attack! <br>";
+        missSound.play();
+    }
+    else{
+       punchSound.play(); 
     }
 
     message.innerHTML +=
@@ -52,25 +65,35 @@ attackBtn.addEventListener("click", () => {
     playerHpText.textContent = Math.max(player.hp, 0);
     enemyHpText.textContent = Math.max(enemy.hp, 0);
 
-    if(enemy.hp <= 0){
+    if (player.hp <= 0 && enemy.hp <= 0) {
+        message.innerHTML = "It's a tie!";
+        attackBtn.disabled = true;
+        restartBtn.style.display = "block";
+    }
+    else if(enemy.hp <= 0){
         message.innerHTML = "You win!";
         attackBtn.disabled = true;
         restartBtn.style.display = "block";
         player.wins += 1;
+        winSound.play();
     }
-
-        if(player.hp <= 0){
+    else if(player.hp <= 0){
             message.innerHTML = "You lost!";
             attackBtn.disabled = true;
             restartBtn.style.display = "block";
             player.losts += 1;
+            loseSound.play();
     }
+
+   
 
 });
 
 restartBtn.addEventListener("click", () => {
     player.hp = 100 + player.losts*10;
     enemy.hp = 100 + player.wins*10;
+    player.hp = player.hp - player.wins*10
+    enemy.hp = enemy.hp - player.losts*10
     wins.textContent = player.wins;
     losts.textContent = player.losts;
     playerHpText.textContent = player.hp;
